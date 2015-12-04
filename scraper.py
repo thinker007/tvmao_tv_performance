@@ -71,7 +71,7 @@ def scrape(response, **kwargs):
         yanyuanbiao = make_dict(table)
         
         today_date = str(datetime.now())
-        scraperwiki.sqlite.save(unique_keys=['Date'], data={'ASIN': asin, 'Date': today_date, 'Amazon Price': amazon_price, 'Total Offer Count': total_offer_count, 'Lowest Price': lowest_price})
+        scraperwiki.sqlite.save(unique_keys=['Date'], data=yanyuanbiao)
 
 
 def multiparse(links):
