@@ -31,7 +31,10 @@ from multiprocessing import cpu_count
 import grequests
 import json
 
-start_urls = ['http://www.tvmao.com/drama/KSExaik=/actors#']
+start_urls = [  
+        'http://www.tvmao.com/drama/KSExaik=/actors#',
+        'http://www.tvmao.com/drama/ZCgyHC0=/actors',
+        ]
 url = 'http://www.tvmao.com/drama/KSExaik=/actors#'
 headers = {
         'Accept-Charset': 'UTF-8,*;q=0.5',
@@ -71,7 +74,7 @@ def scrape(response, **kwargs):
         table = soup.findAll('table',{'class':'tbcrew'})[0]
         yanyuanbiao = make_dict(table)
         yanyuanbiaojson = json.dumps(yanyuanbiao)
-        print yanyuanbiaojson
+       # print yanyuanbiaojson
         today_date = str(datetime.now())
         scraperwiki.sqlite.save(unique_keys=['Date'], data={'yanyuanbiao':yanyuanbiaojson,'Date': today_date})
 
