@@ -29,6 +29,7 @@ from datetime import datetime
 from multiprocessing.dummy import Pool
 from multiprocessing import cpu_count
 import grequests
+import json
 
 start_urls = ['http://www.tvmao.com/drama/KSExaik=/actors#']
 url = 'http://www.tvmao.com/drama/KSExaik=/actors#'
@@ -66,12 +67,12 @@ def make_dict(table):
     return result
 
 def scrape(response, **kwargs):
-        soup = bs(response.text, 'lxml')
+        soup = bs(response.content)
         table = soup.findAll('table',{'class':'tbcrew'})[0]
         yanyuanbiao = make_dict(table)
-        
+        yanyuanbiaojson = json.dumps(yanyuanbiao)
         today_date = str(datetime.now())
-        scraperwiki.sqlite.save(unique_keys=['Date'], data=yanyuanbiao)
+        scraperwiki.sqlite.save(unique_keys=['Date'], data=yanyuanbiaojson)
 
 
 def multiparse(links):
