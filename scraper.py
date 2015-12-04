@@ -66,7 +66,7 @@ def make_dict(table):
     return result
 
 def scrape(response, **kwargs):
-        listing_soup = bs(response.text, 'lxml')
+        soup = bs(response.text, 'lxml')
         table = soup.findAll('table',{'class':'tbcrew'})[0]
         yanyuanbiao = make_dict(table)
         
