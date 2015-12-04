@@ -63,9 +63,9 @@ def make_dict(table):
                 v['@type'] = "uri"
                 v['href'] = a['href']
                 v['name'] = a.text
-                item[unicode(keys[k])] = v
+                item[unicode(keys[k].text)] = v
             else:
-                item[unicode(keys[k])] = col.text
+                item[unicode(keys[k].text)] = col.text
         result.append(item)
     return result
 
