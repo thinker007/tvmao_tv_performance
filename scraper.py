@@ -73,7 +73,7 @@ def scrape(response, **kwargs):
         yanyuanbiaojson = json.dumps(yanyuanbiao)
         print yanyuanbiaojson
         today_date = str(datetime.now())
-        scraperwiki.sqlite.save(unique_keys=['Date'], data=yanyuanbiaojson)
+        scraperwiki.sqlite.save(unique_keys=['Date'], data={'yanyuanbiao':yanyuanbiaojson})
 
 
 def multiparse(links):
