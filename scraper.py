@@ -60,9 +60,9 @@ def make_dict(table):
                 v['@type'] = "uri"
                 v['href'] = a['href']
                 v['name'] = a.text
-                item[keys[k]] = v
+                item[unicode(keys[k])] = v
             else:
-                item[keys[k]] = col.text
+                item[unicode(keys[k])] = col.text
         result.append(item)
     return result
 
@@ -71,6 +71,7 @@ def scrape(response, **kwargs):
         table = soup.findAll('table',{'class':'tbcrew'})[0]
         yanyuanbiao = make_dict(table)
         yanyuanbiaojson = json.dumps(yanyuanbiao)
+        print yanyuanbiaojson
         today_date = str(datetime.now())
         scraperwiki.sqlite.save(unique_keys=['Date'], data=yanyuanbiaojson)
 
